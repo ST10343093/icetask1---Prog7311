@@ -1,0 +1,121 @@
+﻿@model icetask1.Models.ToDoTask
+@{
+    ViewData["Title"] = "Edit Task";
+}
+
+<div class="container mt-4">
+    <!-- Hero Section -->
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card shadow-lg border-0 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-8 p-5">
+                        <h1 class="display-5 fw-bold" style="color: var(--secondary-color);">
+                            Edit <span style="color: var(--primary-color);">Task</span>
+                        </h1>
+                        <p class="lead mt-3 mb-4">
+                            Update your task details and save your changes.
+                        </p>
+                    </div>
+                    <div class="col-md-4 bg-primary d-none d-md-block">
+                        <div class="p-4 text-center text-white h-100 d-flex flex-column justify-content-center" style="background-color: var(--primary-color);">
+                            <i class="fas fa-edit fa-5x mb-3"></i>
+                            <h2 class="h4 fw-bold">Task Modification</h2>
+                            <p class="mt-2">Adjust details to keep your task up to date.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Form Section -->
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h3 fw-bold page-title mb-4">Task Information</h2>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <form asp-action="Edit">
+                                <div asp-validation-summary="ModelOnly" class="text-danger rounded bg-danger bg-opacity-10 p-3 mb-4"></div>
+                                <input type="hidden" asp-for="Id" />
+
+                                <div class="mb-4">
+                                    <label asp-for="Title" class="form-label fw-bold" style="color: var(--secondary-color);"></label>
+                                    <input asp-for="Title" class="form-control form-control-lg shadow-sm" placeholder="Enter task title" />
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="Description" class="form-label fw-bold" style="color: var(--secondary-color);"></label>
+                                    <textarea asp-for="Description" class="form-control shadow-sm" rows="4" placeholder="Enter task description"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-4">
+                                    <label asp-for="DueDate" class="form-label fw-bold" style="color: var(--secondary-color);"></label>
+                                    <input asp-for="DueDate" class="form-control shadow-sm" type="datetime-local" />
+                                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                                </div>
+
+                                <div class="mb-4 form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" asp-for="IsCompleted" role="switch" id="flexSwitchCheckDefault">
+                                    <label class="form-check-label fw-bold" for="flexSwitchCheckDefault" style="color: var(--secondary-color);">
+                                        @Html.DisplayNameFor(model => model.IsCompleted)
+                                    </label>
+                                </div>
+
+                                <hr class="my-4 border-primary">
+
+                                <div class="d-flex gap-3">
+                                    <button type="submit" class="btn btn-primary btn-lg px-4 py-2 shadow-sm">
+                                        <i class="fas fa-save me-2"></i> Save Changes
+                                    </button>
+                                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg px-4 py-2">
+                                        <i class="fas fa-times me-2"></i> Cancel
+                                    </a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-lg-4 d-none d-lg-block">
+                            <div class="card h-100 border-0 bg-light">
+                                <div class="card-body p-4">
+                                    <h4 class="h5 fw-bold mb-3" style="color: var(--primary-color);">Tips for Effective Tasks</h4>
+                                    <ul class="list-unstyled">
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle me-2 text-success"></i>
+                                            Use clear, specific titles
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle me-2 text-success"></i>
+                                            Include all necessary details
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle me-2 text-success"></i>
+                                            Set realistic due dates
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle me-2 text-success"></i>
+                                            Break down complex tasks
+                                        </li>
+                                        <li class="mb-3">
+                                            <i class="fas fa-check-circle me-2 text-success"></i>
+                                            Update status when completed
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,0 +1,105 @@
+﻿@model icetask1.Models.ToDoTask
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container mt-4">
+    <!-- Hero Section -->
+    <div class="row mb-4">
+        <div class="col-lg-12">
+            <div class="card shadow-lg border-0 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-8 p-5">
+                        <h1 class="display-5 fw-bold" style="color: var(--secondary-color);">
+                            Task <span style="color: var(--primary-color);">Details</span>
+                        </h1>
+                        <p class="lead mt-3 mb-4">
+                            View and manage the details of your task below.
+                        </p>
+                    </div>
+                    <div class="col-md-4 bg-primary d-none d-md-block">
+                        <div class="p-4 text-center text-white h-100 d-flex flex-column justify-content-center" style="background-color: var(--primary-color);">
+                            <i class="fas fa-clipboard-list fa-5x mb-3"></i>
+                            <h2 class="h4 fw-bold">Task Information</h2>
+                            <p class="mt-2">Review and update your task details.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Task Details Section -->
+    <div class="row mb-5">
+        <div class="col-lg-12">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4">
+                    <h2 class="h3 fw-bold page-title mb-4">Task Information</h2>
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <dl class="row">
+                                <dt class="col-sm-3 fw-bold" style="color: var(--secondary-color);">
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </dt>
+                                <dd class="col-sm-9 mb-3">
+                                    @Html.DisplayFor(model => model.Title)
+                                </dd>
+                                <dt class="col-sm-3 fw-bold" style="color: var(--secondary-color);">
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </dt>
+                                <dd class="col-sm-9 mb-3">
+                                    @Html.DisplayFor(model => model.Description)
+                                </dd>
+                                <dt class="col-sm-3 fw-bold" style="color: var(--secondary-color);">
+                                    @Html.DisplayNameFor(model => model.DueDate)
+                                </dt>
+                                <dd class="col-sm-9 mb-3">
+                                    @Html.DisplayFor(model => model.DueDate)
+                                </dd>
+                                <dt class="col-sm-3 fw-bold" style="color: var(--secondary-color);">
+                                    @Html.DisplayNameFor(model => model.IsCompleted)
+                                </dt>
+                                <dd class="col-sm-9 mb-3">
+                                    @if (Model.IsCompleted)
+                                    {
+                                        <span class="badge bg-success px-3 py-2"><i class="fas fa-check me-2"></i> Completed</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning px-3 py-2"><i class="fas fa-hourglass-half me-2"></i> Pending</span>
+                                    }
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Action Buttons Section -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm p-4 bg-light">
+                <div class="card-body">
+                    <div class="row align-items-center">
+                        <div class="col-lg-8">
+                            <h3 class="h4 fw-bold">Task Management</h3>
+                            <p class="mb-lg-0">What would you like to do with this task?</p>
+                        </div>
+                        <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                            <div class="d-flex gap-3 justify-content-lg-end">
+                                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary px-4 py-2 shadow-sm">
+                                    <i class="fas fa-edit me-2"></i> Edit Task
+                                </a>
+                                <a asp-action="Index" class="btn btn-outline-secondary px-4 py-2">
+                                    <i class="fas fa-arrow-left me-2"></i> Back to List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
